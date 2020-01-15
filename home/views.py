@@ -1,16 +1,18 @@
 from django.shortcuts import render
 
-data=dict()
+data = dict()
+
+
 def get_user(request):
     global data
     if 'user' in request.session:
         user = request.session['user']
-        link1='Выход'
-        link2='Профиль'
+        link1 = 'Выход'
+        link2 = 'Профиль'
     else:
-        user='Гость'
-        link1='Вход'
-        link2='Регистрация'
+        user = 'Гость'
+        link1 = 'Вход'
+        link2 = 'Регистрация'
 
     data['user']=user
     data['link1']=link1
