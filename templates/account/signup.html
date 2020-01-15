@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    NewsPortal - Регистрация
+{% endblock title %}
+
+
+{% block header %}
+    Страница Регистрации
+{% endblock header %}
+
+
+{% block content %}
+
+<div id="main_box" class="container">
+
+    <form method="POST">
+        {% csrf_token %}
+<table>
+    {{form}}
+</table>
+    <input type="submit" value="Send">
+
+</form>
+
+
+<form id="form1" method="POST" >
+    {% csrf_token %}
+    <p>
+        <label for="login">Логин:</label><br>
+        <input type="text" id="login" name="login" placeholder="Введите ваш логин" required>
+        <img src=""/>
+        <div id="login_err" class="err"></div>
+    </p>
+    <p>
+        <label for="pass1">Пароль:</label><br>
+        <input type="password" id="pass1" name="pass1" placeholder="Введите ваш пароль" required>
+        <div id="pass1_err" class="err"></div>
+    </p>
+    <p>
+        <label for="pass2">повтор:</label><br>
+        <input type="pass2" id="pass2" name="pass2" placeholder="Введите ваш пароль еще раз" required>
+        <div id="pass2_err" class="err"></div>
+    </p>
+    <p>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+        <div id="email_err" class="err"></div>
+    </p>
+    <p>
+        <input type="submit" value="Отправить" class="btn btn-success">
+        <input type="reset" value="Очистить" class="btn btn-success">
+    </p>
+</form>
+
+</div>
+    <style>
+#form1{
+    border: 1px solid silver;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 350px;
+    text-align: left;
+}
+#form1 input{
+    width:100%;
+
+
+}
+#form1 input[type="submit"],#form1 input[type="reset"]{
+    width: 45%;
+    margin-top:25px;
+}
+.err{
+    color:red;
+    margin-top:-15px;
+}
+        #registr{
+            margin-top:80px;
+        }
+img{
+    width:24px;
+}
+    </style>
+    <script>
+
+        $(document).ready(function () {
+
+          let valid = true;
+          let regExp1=/^[a-zA-Z][a-zA-Z0-9_\-]{5,16}$/;
+        //   let regExp2=//;
+        //   let regExp3=//;
+          $('#login').blur(function(){
+            let login = $(this).val();
+            if (regExp1.test(login)){
+                $('#login_err').text('ok');
+            } else{
+                $(this).css('border-color','red')
+                $('#login_err').text('логин должен состоять из букв ил цифр (6-16)+()_\-');
+            }
+
+
+          });
+          $('#login').focus(function(){
+            $(this).css('border-color','silver')
+             $('#login_err').text('');
+          });
+
+        });
+
+
+    </script>
+{% endblock content %}

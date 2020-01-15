@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    NewsPortal - Вход
+{% endblock title %}
+
+
+{% block header %}
+    Страница входа
+{% endblock header %}
+
+
+{% block content %}
+     <div id="main_box" class="container">
+        <h3>Авторизация</h3>
+        <hr>
+    </div>
+<div class="container">
+   <form id="form2" method="POST" >
+    {% csrf_token %}
+    <p>
+        <label for="login">Логин:</label><br>
+        <input type="text" id="login" name="login" placeholder="Введите ваш логин" required>
+        <img src=""/>
+        <div id="login_err" class="err"></div>
+    </p>
+    <p>
+        <label for="pass1">Пароль:</label><br>
+        <input type="password" id="pass1" name="pass1" placeholder="Введите ваш пароль" required>
+        <div id="pass1_err" class="err"></div>
+    </p>
+
+
+    <p>
+        <input type="submit" value="Отправить" class="btn btn-success">
+        <input type="reset" value="Очистить" class="btn btn-success">
+    </p>
+</form>
+</div>
+    <style>
+        #main_box{
+            margin-top:25px;
+        }
+    </style>
+{% endblock content %}

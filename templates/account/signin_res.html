@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    NewsPortal - Регистрация отчет
+{% endblock title %}
+
+
+{% block header %}
+    Страница оброботки входа для зарегистрированных пользователей
+{% endblock header %}
+
+
+{% block content %}
+     <div id="main_box" class="container">
+        <h3>  Ура Ура</h3>
+
+
+        <h4 style="color:{{x_color}}">{{report}}</h4>
+        <h5>login:{{login}}<br>
+            passw:{{passw}}<br>
+
+        </h5>
+        <hr>
+    </div>
+    <style>
+        #main_box{
+            margin-top:25px;
+        }
+    </style>
+{% endblock content %}
