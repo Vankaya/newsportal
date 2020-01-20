@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
 from hashlib import md5
 from datetime import datetime
 from .models import User
@@ -7,6 +7,8 @@ from .forms import UserForm
 from sqlite3 import *
 
 data=dict()
+
+
 def get_user(request):
     global data
     if 'user' in request.session:
@@ -14,6 +16,7 @@ def get_user(request):
     else:
         user='Гость'
     data['user']=user
+
 
 def signup(request):
     global data
@@ -107,3 +110,21 @@ def signin(request):
 
 def signout(request):
     return render(request, 'account/signout.html')
+
+def profile(request):
+    return  render(request, 'account/profile.html')
+
+def ajax_reg(request):
+    response = dict()
+    _login = request.GET.get('login')
+
+    try:
+        user = User.objects.get(login=_login)
+        response['mess']='no'
+    except User.DoesNotExist as err:
+        response['mess'] = 'yes'
+    # response['mess'] = 'AJAX-OK'
+    # response['login'] = login
+    return JsonResponse(response)
+
+
